@@ -1,70 +1,93 @@
-# Breast Cancer Detection System - Production Ready
+# Breast Cancer Detection System
 
-## Overview
-A production-ready breast cancer detection system using multiple deep learning models with safety measures to prevent false positives.
+A production-focused research codebase for automated breast cancer detection using multiple pretrained deep learning models, safety checks to reduce false positives, and tooling for training, evaluation, and deployment.
 
-## Features
-- **Multiple Models**: ResNet18, EfficientNetB3, DenseNet121, MobileNetV2, VGG16
-- **Safety Measures**: Automatic detection and prevention of false positives on random/dumb images
-- **Production Testing**: Comprehensive testing suite for deployment validation
-- **Web Interface**: Streamlit-based user interface
+**Highlights**
+- Multiple model backbones: ResNet18, EfficientNet, DenseNet, MobileNet, VGG and more
+- Built-in safety checks for low-confidence / nonsensical inputs
+- Streamlit demo for quick interactive evaluation
+- Test and production validation suites
 
-## Quick Start
+## Quick start
 
-### 1. Install Dependencies
+1. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Run the Application
+2. Launch the demo app (Streamlit):
+
 ```bash
 streamlit run app_fixed.py
 ```
 
-### 3. Test Models
+3. Run model tests and production checks:
+
 ```bash
 python test_models_independently.py
-```
-
-### 4. Production Testing
-```bash
 python production_test_suite.py
 ```
 
-## Model Information
-- **ResNet18**: Fast, reliable predictions
-- **EfficientNetB3**: Balanced accuracy and speed
-- **DenseNet121**: High accuracy with dense connections
-- **MobileNetV2**: Lightweight, mobile-friendly
-- **VGG16**: Classic architecture with good performance
+## Models
 
-## Safety Features
-- Automatic detection of random noise and solid color images
-- Confidence thresholds to prevent low-confidence predictions
-- Multiple validation layers for cancer predictions
+The `models/` directory contains multiple pretrained weights used for inference and research experiments. Examples included in this repo:
 
-## File Structure
+- `resnet18_breast_cancer_optimized.pth` — fast, baseline model
+- `efficientnet_b3_breast_cancer_advanced.pth` — accuracy-focused model
+- `densenet121_breast_cancer_optimized.pth` — dense-connection architecture
+- MobileNet and VGG variants for lightweight and classic baselines
+- GAN weights for synthetic data experiments
+
+Use the provided inference and training scripts in the root and `Trainer/` folder to evaluate or retrain models.
+
+## Safety & Reliability
+
+This project includes measures to reduce false positives and increase robustness:
+
+- Input sanity checks (detects random noise and solid-color images)
+- Prediction confidence thresholds and multi-stage validation
+- Production test suite covering performance and stability scenarios
+
+## Project layout
+
 ```
-├── app_fixed.py                 # Main Streamlit application
-├── production_test_suite.py     # Production testing suite
-├── fix_false_positives.py       # Safety measures
-├── test_models_independently.py # Model testing
-├── train_improved_models.py     # Model training
-├── models/                      # Trained model files
-├── data/                        # Dataset directory
-└── requirements.txt             # Python dependencies
+BreastCancer-detection/
+├─ app_fixed.py                  # Streamlit demo + inference wrapper
+├─ gan_models.py                 # GAN model definitions
+├─ Trainer/                      # Training scripts and helpers
+│  ├─ train_all_models.py
+│  ├─ train_gan.py
+│  └─ check_dataset.py
+├─ models/                       # Pretrained weights used by the app
+├─ research_visualizations/      # Plots and visual assets for the paper
+├─ requirements.txt              # Python dependencies
+└─ README.md
 ```
 
-## Production Deployment
-The system has been thoroughly tested for production deployment:
-- ✅ Load testing (1000+ concurrent predictions)
-- ✅ Stress testing (5+ minutes continuous operation)
-- ✅ Memory usage optimization
-- ✅ False positive prevention
-- ✅ Performance benchmarking
+## Training & Evaluation
+
+- Use `Trainer/train_all_models.py` or `train_optimized.py` to train models on your dataset.
+- Use `Trainer/train_gan.py` for GAN experiments and synthetic data generation.
+- Visualizations and benchmarking scripts live under `research_visualizations/`.
+
+## Reproducibility
+
+- Set up a Python virtual environment and install `requirements.txt`.
+- Ensure GPU drivers and CUDA/CuDNN are configured if training or running heavy inference.
+
+## Contributing
+
+PRs, issue reports, and dataset notes are welcome. For changes that affect model accuracy, include evaluation results and the training config.
+
+## License
+
+This repository does not include a license file. Add one if you plan to reuse or redistribute the code.
 
 ## Support
-For issues or questions, refer to the testing suite or run:
+
+If you encounter problems, run the production test suite for diagnostics:
+
 ```bash
 python production_test_suite.py
 ```
