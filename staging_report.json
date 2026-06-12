@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-09-12T00:32:45.956703",
+  "prediction": "Cancerous",
+  "confidence": 0.75,
+  "overall_stage": "Stage III",
+  "risk_level": "High Risk",
+  "model_agreement": true,
+  "average_confidence": 0.75
+}
